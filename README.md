@@ -1,2 +1,2 @@
 # web-useraccountcontrol-tool
-See what a userAccountControl value from ActiveDirectory means.
+Put in a userAccountCountrol value from Active Directory and this tool will tell you what it means.
