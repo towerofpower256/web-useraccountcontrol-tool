@@ -66,3 +66,17 @@ function WUT_RecalculateResult() {
 		}
 	}
 }
+
+function WUT_onPageLoad() {
+	// Put a random value into the input field
+	var randValues = {
+		512,
+		514,
+		544,
+		66048,
+		66050
+	};
+	var randIndex = Math.floor(Math.random() * randValues.length);
+	gel("wut-input-field").value(randValues[randIndex]);
+	
+}
