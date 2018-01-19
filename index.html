@@ -1,188 +1,188 @@
 <!doctype html>
 
 <html lang="en">
-<head>
-	<meta charset="utf-8">
+	<head>
+		<meta charset="utf-8">
 
-	<title>Web userAccountControl tool - by David McDonald</title>
-	<meta name="description" content="Web tool for decoding userAccountControl values from Active Directory">
-	<meta name="author" content="David McDonald 2018">
+		<title>Web userAccountControl tool - by David McDonald</title>
+		<meta name="description" content="Web tool for decoding userAccountControl values from Active Directory">
+		<meta name="author" content="David McDonald 2018">
 
-	<link rel="stylesheet" href="style v1.0.css">
+		<link rel="stylesheet" href="style v1.0.css">
 
-	<!--[if lt IE 9]>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-	<![endif]-->
+		<!--[if lt IE 9]>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+		<![endif]-->
 
-	<script src="scripts.js"></script>
+		<script src="scripts.js"></script>
 
-</head>
+	</head>
 
-<body onload="WUT_onPageLoad();">
+	<body onload="WUT_onPageLoad();">
 
-<header id="wut-header">
-	<div id="wut-header-text">Web userAccountControl Tool</div>
-</header>
+	<header id="wut-header">
+		<div id="wut-header-text">Web userAccountControl Tool</div>
+	</header>
 
-<section id="wut-content">
+	<section id="wut-content">
 
-	<p>Use this tool to interpret a numerical value from Active Directory's userAccountControl attribute into what each of the bits of the bitmask value mean</p>
+		<p>Use this tool to interpret a numerical value from Active Directory's userAccountControl attribute into what each of the bits of the bitmask value mean</p>
 
-	<div id="wut-input-wrapper">
-		<label>Enter a value to calculate</label>
-		<input type="text" id="wut-input-field" placeholder="" onchange="WUT_RecalculateResult();"  onpaste="WUT_RecalculateResult();" onkeyup="WUT_RecalculateResult();" />
-	</div>
+		<div id="wut-input-wrapper">
+			<label>Enter a value to calculate</label>
+			<input type="text" id="wut-input-field" placeholder="" onchange="WUT_RecalculateResult();"  onpaste="WUT_RecalculateResult();" onkeyup="WUT_RecalculateResult();" />
+		</div>
 
-	<table id="wut-uac-table">
-		<thead>
-			<tr>
-				<td>Result</td>
-				<td>Flag name</td>
-				<td>Value in hexadecimal</td>
-				<td>Value in decimal</td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-1"></div></td>
-				<td>SCRIPT</td>
-				<td>0x0001</td>
-				<td>1</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-2"></div></td>
-				<td>ACCOUNTDISABLE</td>
-				<td>0x0002</td>
-				<td>2</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-4"></div></td>
-				<td>HOMEDIR_REQUIRED</td>
-				<td>0x0008</td>
-				<td>8</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-5"></div></td>
-				<td>LOCKOUT</td>
-				<td>0x0010</td>
-				<td>16</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-6"></div></td>
-				<td>PASSWD_NOTREQD</td>
-				<td>0x0020</td>
-				<td>32</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-7"></div></td>
-				<td>PASSWD_CANT_CHANGE</td>
-				<td>0x0040</td>
-				<td>64</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-8"></div></td>
-				<td>ENCRYPTED_TEXT_PWD_ALLOWED</td>
-				<td>0x0080</td>
-				<td>128</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-9"></div></td>
-				<td>TEMP_DUPLICATE_ACCOUNT</td>
-				<td>0x0100</td>
-				<td>256</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-10"></div></td>
-				<td>NORMAL_ACCOUNT</td>
-				<td>0x0200</td>
-				<td>512</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-12"></div></td>
-				<td>INTERDOMAIN_TRUST_ACCOUNT</td>
-				<td>0x0800</td>
-				<td>2048</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-13"></div></td>
-				<td>WORKSTATION_TRUST_ACCOUNT</td>
-				<td>0x1000</td>
-				<td>4096</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-14"></div></td>
-				<td>SERVER_TRUST_ACCOUNT</td>
-				<td>0x2000</td>
-				<td>8192</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-17"></div></td>
-				<td>DONT_EXPIRE_PASSWORD</td>
-				<td>0x10000</td>
-				<td>65536</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-18"></div></td>
-				<td>MNS_LOGON_ACCOUNT</td>
-				<td>0x20000</td>
-				<td>131072</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-19"></div></td>
-				<td>SMARTCARD_REQUIRED</td>
-				<td>0x40000</td>
-				<td>262144</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-20"></div></td>
-				<td>TRUSTED_FOR_DELEGATION</td>
-				<td>0x80000</td>
-				<td>524288</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-21"></div></td>
-				<td>NOT_DELEGATED</td>
-				<td>0x100000</td>
-				<td>1048576</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-22"></div></td>
-				<td>USE_DES_KEY_ONLY</td>
-				<td>0x200000</td>
-				<td>2097152</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-23"></div></td>
-				<td>DONT_REQ_PREAUTH</td>
-				<td>0x400000</td>
-				<td>4194304</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-24"></div></td>
-				<td>PASSWORD_EXPIRED</td>
-				<td>0x800000</td>
-				<td>8388608</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-25"></div></td>
-				<td>TRUSTED_TO_AUTH_FOR_DELEGATION</td>
-				<td>0x1000000</td>
-				<td>16777216</td>
-			</tr>
-			<tr>
-				<td><div class="wut-calcresult" id="wut-calcresult-27"></div></td>
-				<td>PARTIAL_SECRETS_ACCOUNT</td>
-				<td>0x04000000</td>
-				<td>67108864</td>
-			</tr>
-		</tbody>
-	</table>
+		<table id="wut-uac-table">
+			<thead>
+				<tr>
+					<td>Result</td>
+					<td>Flag name</td>
+					<td>Value in hexadecimal</td>
+					<td>Value in decimal</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-1"></div></td>
+					<td>SCRIPT</td>
+					<td>0x0001</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-2"></div></td>
+					<td>ACCOUNTDISABLE</td>
+					<td>0x0002</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-4"></div></td>
+					<td>HOMEDIR_REQUIRED</td>
+					<td>0x0008</td>
+					<td>8</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-5"></div></td>
+					<td>LOCKOUT</td>
+					<td>0x0010</td>
+					<td>16</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-6"></div></td>
+					<td>PASSWD_NOTREQD</td>
+					<td>0x0020</td>
+					<td>32</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-7"></div></td>
+					<td>PASSWD_CANT_CHANGE</td>
+					<td>0x0040</td>
+					<td>64</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-8"></div></td>
+					<td>ENCRYPTED_TEXT_PWD_ALLOWED</td>
+					<td>0x0080</td>
+					<td>128</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-9"></div></td>
+					<td>TEMP_DUPLICATE_ACCOUNT</td>
+					<td>0x0100</td>
+					<td>256</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-10"></div></td>
+					<td>NORMAL_ACCOUNT</td>
+					<td>0x0200</td>
+					<td>512</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-12"></div></td>
+					<td>INTERDOMAIN_TRUST_ACCOUNT</td>
+					<td>0x0800</td>
+					<td>2048</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-13"></div></td>
+					<td>WORKSTATION_TRUST_ACCOUNT</td>
+					<td>0x1000</td>
+					<td>4096</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-14"></div></td>
+					<td>SERVER_TRUST_ACCOUNT</td>
+					<td>0x2000</td>
+					<td>8192</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-17"></div></td>
+					<td>DONT_EXPIRE_PASSWORD</td>
+					<td>0x10000</td>
+					<td>65536</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-18"></div></td>
+					<td>MNS_LOGON_ACCOUNT</td>
+					<td>0x20000</td>
+					<td>131072</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-19"></div></td>
+					<td>SMARTCARD_REQUIRED</td>
+					<td>0x40000</td>
+					<td>262144</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-20"></div></td>
+					<td>TRUSTED_FOR_DELEGATION</td>
+					<td>0x80000</td>
+					<td>524288</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-21"></div></td>
+					<td>NOT_DELEGATED</td>
+					<td>0x100000</td>
+					<td>1048576</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-22"></div></td>
+					<td>USE_DES_KEY_ONLY</td>
+					<td>0x200000</td>
+					<td>2097152</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-23"></div></td>
+					<td>DONT_REQ_PREAUTH</td>
+					<td>0x400000</td>
+					<td>4194304</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-24"></div></td>
+					<td>PASSWORD_EXPIRED</td>
+					<td>0x800000</td>
+					<td>8388608</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-25"></div></td>
+					<td>TRUSTED_TO_AUTH_FOR_DELEGATION</td>
+					<td>0x1000000</td>
+					<td>16777216</td>
+				</tr>
+				<tr>
+					<td><div class="wut-calcresult" id="wut-calcresult-27"></div></td>
+					<td>PARTIAL_SECRETS_ACCOUNT</td>
+					<td>0x04000000</td>
+					<td>67108864</td>
+				</tr>
+			</tbody>
+		</table>
 
-</section>
+	</section>
 
-<footer id="wut-footer">
-By David McDonald 2018<br />Because I thought it would be cool
-</footer>
+	<footer id="wut-footer">
+	By David McDonald 2018<br />Because I thought it would be cool
+	</footer>
 
-</body>
+	</body>
 </html>
