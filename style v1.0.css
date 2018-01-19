@@ -1,0 +1,84 @@
+header {
+	width: 100%;
+	padding-bottom: 15px;
+}
+
+body {
+	background-color: white;
+	margin: 0px;
+	font-family: arial;
+}
+
+html{
+	/* Used in making the footer hug the bottom of the page */
+	position:relative; 
+	min-height: 100%;
+}
+
+section#wut-content {
+	padding-left: 20px;
+	margin-bottom: 80px;
+}
+
+header#wut-header {
+	background-color: #ccc;
+	width: 100%;
+	padding-bottom: 20px;
+	margin: 0px;
+	margin-bottom: 20px;
+	font-weight: bold;
+	font-size: xx-large;
+}
+
+div#wut-header-text {
+	padding-left: 50px;
+}
+
+footer {
+	max-height: 80px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	/*height:100px;*/
+	background:#ccc;
+	text-align: center;
+}
+
+div#wut-input-wrapper {
+	padding: 20px 5px 20px 5px;
+}
+
+div.wut-calcresult {
+	text-align: center;
+	width: 100%;
+	min-height: 1.5em;
+}
+
+div.wut-calcresult[enabled="true"] {
+	color: green;
+}
+
+div.wut-calcresult[enabled="false"] {
+	color: #ff7f7f;
+}
+
+table#wut-uac-table {
+	border-collapse: collapse;
+	border: solid 1px black;
+}
+
+table#wut-uac-table thead tr td {
+	/* font-weight: bold; */
+	background-color: #f2f2f2;
+
+}
+
+table#wut-uac-table tr td {
+	border: solid 1px black;
+	padding: 3px;
+}
+
